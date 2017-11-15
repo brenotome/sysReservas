@@ -13,6 +13,21 @@ public class Assentos {
    public int[] assentos;
    
    public int[] visualizarAssentos(int idThread){
+      try
+        {
+            monitor.entraLeitor();
+        }
+        catch(InterruptedException e)
+        {
+            
+        }
+        log.escrevelog("1");
+        log.escrevelog(Integer.ToString(idThread));
+        for(int i = 0; i < numAssentos; i++)
+        {
+             //log.escrevelog(Integer.toString(assentos[i]);
+        }
+        monitor.saiLeitor();
        return this.assentos;
    }
    public void alocarAssentoLivre(int idThread){}
