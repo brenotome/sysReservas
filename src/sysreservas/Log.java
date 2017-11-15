@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package sysreservas;
 
 import java.io.PrintWriter;
 
 /**
- *
+ * Classe salva log no buffer depois salva o buffer em arquivo de texto
  * @author breno
  */
 public class Log {
@@ -16,6 +12,10 @@ public class Log {
     public String logNome;
     private PrintWriter writer;
     
+    /**
+     * Cria arquivo
+     * @param logName 
+     */
     Log(String logName){
         this.logNome=logName;
         try{
@@ -26,10 +26,18 @@ public class Log {
         }
 
     }
+    /**
+     * escreve o parametro para o Buffer, a classe logBuffer é threadSafe 
+     * @param text 
+     */
     public void escrevelog(String text){
         this.logBuffer.append(text);
                 this.logBuffer.append(System.lineSeparator());
     }
+    /**
+     * escreve buffer em arquivo
+     * @return falso quando ocorre erro
+     */
     public boolean escreveArquivo(){
         try{
                 writer.println(this.logBuffer);
