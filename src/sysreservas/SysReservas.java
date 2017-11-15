@@ -15,8 +15,9 @@ public class SysReservas {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        Monitor monitor = new Monitor();
         Log log = new Log("meulog");
-        Assentos assentos = new Assentos(10,log);
+        Assentos assentos = new Assentos(10,log,monitor);
 
     }
     public void thread0(){}
