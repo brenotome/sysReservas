@@ -5,6 +5,7 @@
  */
 package sysreservas;
 import java.util.concurrent.*;
+
 /**
  *
  * @author breno 
@@ -14,7 +15,7 @@ public class SysReservas {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
     }
     public void thread0(){}
     public void thread1(){}
