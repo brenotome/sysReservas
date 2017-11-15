@@ -5,7 +5,6 @@
  */
 package sysreservas;
 
-import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 /**
@@ -17,18 +16,7 @@ public class Log {
     public String logNome;
     private PrintWriter writer;
     
-    public void escrevelog(String text){
-        logBuffer.append(System.lineSeparator());
-        this.logBuffer.append(text);
-    }
-    public boolean escreveArquivo(){
-        try{
-                writer.println(this.logBuffer);
-        }
-        catch(Exception e){System.out.println("erro de escrita no arquivo");return false;}
-        return true;
-    }
-    public Log(String logName){
+    Log(String logName){
         this.logNome=logName;
         try{
             PrintWriter writer = new PrintWriter(logName+".txt", "UTF-8");
@@ -37,5 +25,17 @@ public class Log {
             System.out.println("erro ao criar arquivo");
         }
 
+    }
+    public void escrevelog(String text){
+        this.logBuffer.append(text);
+                this.logBuffer.append(System.lineSeparator());
+    }
+    public boolean escreveArquivo(){
+        try{
+                writer.println(this.logBuffer);
+                writer.close();
+        }
+        catch(Exception e){System.out.println("erro de escrita no arquivo");return false;}
+        return true;
     }
 }
