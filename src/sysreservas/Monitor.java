@@ -1,27 +1,37 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sysreservas;
 
-/**
- *
- * @author breno
- */
-public class Monitor {
-   public static int leitores;
-   public static int escritores;
-   public static int pedidosEscrita;
-   
-   public static boolean readlock(int idThread) {
-     return true;  
-   };
-   public static void readUnlock(int idThread){}
+public class Monitor
+{
+    private int leitores;
+    private int escritores;
+    private int req_escrita;
+    public Monitor()
+    {
+        this.leitores = 0;
+        this.escritores = 0;
+        this.req_escrita = 0;
+    }
 
-   public static boolean writelock(int idThread) {
-     return true;  
-   };
-   public static void writeUnlock(int idThread){}
-   
+    public void entraLeitor() throws InterruptedException
+    {
+        while(escritores > 0 || req_escrita >0) wait();
+        leitores++;
+    }
+    public void saiLeitor()
+    {
+        leitores--;
+        notifyAll();
+    }
+    public void entraEscritor() throws InterruptedException
+    {
+        req_escrita++;
+        while(leitores > 0 || escritores > 0) wait();
+        req_escrita--;
+        escritores++;
+    }
+    public void saiEscritor()
+    {
+        escritores--;
+        notifyAll();
+    }
 }
