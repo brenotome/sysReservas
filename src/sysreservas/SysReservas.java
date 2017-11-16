@@ -18,10 +18,10 @@ public class SysReservas {
         Thread tz;
         tz = new Thread(new Thread0(log));
         
-        for(int i=0; i<5;i++){
-            th[i]=new Thread(new ClienteThread(log,monitor,i));
+        for(int i=0; i<4;i++){
+            th[i]=new Thread(new ClienteThread(log,monitor,assentos,i+1));
         }
-        for(int i=0; i<5;i++){
+        for(int i=0; i<4;i++){
             th[i].start();
         }
         tz.start();

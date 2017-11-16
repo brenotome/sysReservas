@@ -16,10 +16,11 @@ public class ClienteThread implements Runnable{
     private Monitor monitor;
     private Assentos assentos;
     private int id;
-    public ClienteThread(Log log, Monitor monitor,int id) {
+    public ClienteThread(Log log, Monitor monitor,Assentos assentos,int id) {
         this.log = log;
         this.monitor = monitor;
         this.id = id;
+        this.assentos = assentos;
     }
     
     @Override
@@ -36,23 +37,30 @@ public class ClienteThread implements Runnable{
                 case 4:
                     this.thread4();
             }
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        } 
+        }catch (Exception e){} 
       }
     }
     
     public void thread1(){
+        System.out.println("th1");
         assentos.visualizarAssentos(id);
+        System.out.println("th1 OUT");
+
     }
     public void thread2(){
+        System.out.println("th2");
         assentos.visualizarAssentos(id);
+        System.out.println("th2 OUT");
     }
     public void thread3(){
+        System.out.println("th3");
         assentos.visualizarAssentos(id);
+        System.out.println("th3 OUT");
     }
     public void thread4(){
+        System.out.println("th4");
         assentos.visualizarAssentos(id);
+        System.out.println("th4 OUT");
     }
     
     

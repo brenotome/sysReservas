@@ -5,7 +5,8 @@ public class Monitor
     private int leitores;
     private int escritores;
     private int req_escrita;
-    public Monitor()
+    
+    Monitor()
     {
         this.leitores = 0;
         this.escritores = 0;
