@@ -5,13 +5,10 @@
  */
 package sysreservas;
 
+
 import java.util.Arrays;
 import java.util.Random;
 
-/**
- *
- * @author breno
- */
 public class Assentos {
    public int[] assentos;
    public int numAssentos;
@@ -25,12 +22,10 @@ public class Assentos {
         this.monitor=monitor;
     }
    
-   public synchronized int[] visualizarAssentos(int idThread){
-       System.out.println("vizualiza");
+   public synchronized void visualizarAssentos(int idThread){
         try
         {
             monitor.entraLeitor();
-            while(Thread.currentThread().isInterrupted()){};
             StringBuilder sb= new StringBuilder();
             sb.append("1,");
             sb.append(idThread);
@@ -39,11 +34,10 @@ public class Assentos {
             System.out.println(sb.toString());
             log.escrevelog(sb.toString());
             monitor.saiLeitor();
-            return this.assentos;
         }
         catch(InterruptedException e){}
         
-        return new int[numAssentos];
+
    }
    public synchronized int alocarAssentoLivre(int idThread){
       try
@@ -60,8 +54,9 @@ public class Assentos {
        
         StringBuilder sb= new StringBuilder();
         sb.append("2,");
-        sb.append(idThread+',');
+        sb.append(idThread+",");
         sb.append(Arrays.toString(assentos));
+        System.out.println(sb.toString());
         log.escrevelog(sb.toString());
         monitor.saiEscritor();
         return 1;
@@ -90,8 +85,9 @@ public class Assentos {
          }
             StringBuilder sb= new StringBuilder();
             sb.append("3,");
-            sb.append(idThread+',');
+            sb.append(idThread+",");
             sb.append(Arrays.toString(assentos));
+            System.out.println(sb.toString());
             log.escrevelog(sb.toString());
             monitor.saiEscritor();
             return retorno;
@@ -111,7 +107,7 @@ public class Assentos {
             monitor.entraEscritor();
             StringBuilder sb= new StringBuilder();
             sb.append("4,");
-            sb.append(idThread+',');
+            sb.append(idThread+",");
             
             if(assentos[assento] == 0 || assentos[assento] != idThread)
             {
@@ -123,6 +119,7 @@ public class Assentos {
                 assentos[assento] = 0;
             }
             sb.append(Arrays.toString(assentos));
+            System.out.println(sb.toString());
             log.escrevelog(sb.toString());
             monitor.saiEscritor();
          }
