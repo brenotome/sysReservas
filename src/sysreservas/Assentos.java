@@ -41,9 +41,17 @@ public class Assentos {
        return this.assentos;
    }
    public int alocarAssentoLivre(int idThread){
+      try
+      {
+         monitor.entraEscritor();
+      }
+      catch(InterruptedException e)
+      {
+         System.err.print(e);  
+      }
        Random rand = new Random();
        int r = rand.nextInt(numAssentos);
-       if(this.assentos[r]==0){
+       if(this.assentos[r]!=0){
            System.out.println("Assento Ocupado");
            return 0;
        }else{
@@ -54,9 +62,39 @@ public class Assentos {
        sb.append(idThread+',');
        sb.append(Arrays.toString(assentos));
        log.escrevelog(sb.toString());
+      monitor.saiEscritor();
        return 1;
    }
-   public void alocarAssentoDado(int idThread, int assento){}
+   public void alocarAssentoDado(int idThread, int assento)
+   {
+         int retorno;
+         try
+         {
+            monitor.entraEscritor();
+         }
+         catch(InterruptedException e)
+         {
+            System.err.print(e);  
+         }
+         if(this.assentos[assento]!=0)
+         {
+           System.out.println("Assento Ocupado");
+           retorno = 0;
+         }
+         else
+         {
+            retorno = 1;
+            this.assentos[assento] = idThread;
+         }
+         StringBuilder sb= new StringBuilder();
+         sb.append("3,");
+         sb.append(idThread+',');
+         sb.append(Arrays.toString(assentos));
+         log.escrevelog(sb.toString());
+         monitor.saiEscritor();
+         return retorno;
+    }
+   }
    public void liberarAssento(int idThread, int assento){}
     
 }
