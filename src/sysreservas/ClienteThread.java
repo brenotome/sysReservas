@@ -12,26 +12,29 @@ import java.util.Random;
  * @author breno
  */
 public class ClienteThread implements Runnable{
-    private SysReservas reservas;
-    public ClienteThread(SysReservas reservas) {
-        this.reservas = reservas;
+    private Log log;
+    private Monitor monitor;
+    private Assentos assentos;
+    private int id;
+    public ClienteThread(Log log, Monitor monitor,int id) {
+        this.log = log;
+        this.monitor = monitor;
+        this.id = id;
     }
     
     @Override
     public void run() {
      while(!Thread.currentThread().isInterrupted()){
         try{
-            Random rand = new Random();
-            int r = rand.nextInt(3)+1;
-            switch(r){
+            switch(id){
                 case 1:
-                    reservas.thread1();
+                    this.thread1();
                 case 2:
-                    reservas.thread2();
+                    this.thread2();
                 case 3:
-                    reservas.thread3();
+                    this.thread3();
                 case 4:
-                    reservas.thread4();
+                    this.thread4();
             }
         }catch (Exception e){
             System.out.println(e.getMessage());
@@ -39,7 +42,18 @@ public class ClienteThread implements Runnable{
       }
     }
     
-    
+    public void thread1(){
+        assentos.visualizarAssentos(id);
+    }
+    public void thread2(){
+        assentos.visualizarAssentos(id);
+    }
+    public void thread3(){
+        assentos.visualizarAssentos(id);
+    }
+    public void thread4(){
+        assentos.visualizarAssentos(id);
+    }
     
     
 }

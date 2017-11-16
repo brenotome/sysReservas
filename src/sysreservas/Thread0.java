@@ -11,7 +11,8 @@ package sysreservas;
  */
 public class Thread0 implements Runnable {
     private Log log;
-    public Thread0(Log log) {
+    
+    Thread0(Log log) {
         this.log = log;
     }
 

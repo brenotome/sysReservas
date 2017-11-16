@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in tshe editor.
- */
 package sysreservas;
 import java.util.concurrent.*;
 
@@ -11,6 +6,7 @@ import java.util.concurrent.*;
  * @author breno 
  */
 public class SysReservas {
+    private Assentos assentos;
     /**
      * @param args the command line arguments
      */
@@ -18,11 +14,19 @@ public class SysReservas {
         Monitor monitor = new Monitor();
         Log log = new Log("meulog");
         Assentos assentos = new Assentos(10,log,monitor);
+        Thread th[] = new Thread[4];
+        Thread tz;
+        tz = new Thread(new Thread0(log));
+        
+        for(int i=0; i<5;i++){
+            th[i]=new Thread(new ClienteThread(log,monitor,i));
+        }
+        for(int i=0; i<5;i++){
+            th[i].start();
+        }
+        tz.start();
 
     }
-    public void thread1(){}
-    public void thread2(){}
-    public void thread3(){}
-    public void thread4(){}
+
     
 }
