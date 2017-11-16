@@ -5,12 +5,10 @@
  */
 package sysreservas;
 
+
 import java.util.Random;
 
-/**
- *
- * @author breno
- */
+
 public class ClienteThread implements Runnable{
     private Log log;
     private Monitor monitor;
@@ -25,23 +23,26 @@ public class ClienteThread implements Runnable{
     
     @Override
     public void run() {
-     while(!Thread.currentThread().isInterrupted()){
         try{
             switch(id){
                 case 1:
                     this.thread1();
+                    break;
                 case 2:
                     this.thread2();
+                    break;
                 case 3:
                     this.thread3();
+                    break;
                 case 4:
                     this.thread4();
+                    break;
             }
         }catch (Exception e){} 
-      }
     }
     
     public void thread1(){
+        System.out.println("Thread1");
         assentos.visualizarAssentos(id);
         Random rand = new Random();
         int r = rand.nextInt(assentos.numAssentos-1)+1;
@@ -50,6 +51,7 @@ public class ClienteThread implements Runnable{
         assentos.liberarAssento(id, r);
     }
     public void thread2(){
+        System.out.println("Thread2");
         Random rand = new Random();
         int r = rand.nextInt(assentos.numAssentos-1)+1;
         assentos.visualizarAssentos(id);
@@ -58,6 +60,7 @@ public class ClienteThread implements Runnable{
         assentos.liberarAssento(id, r);
     }
     public void thread3(){
+        System.out.println("Thread3");
         Random rand = new Random();
         int r = rand.nextInt(assentos.numAssentos-1)+1;
         assentos.visualizarAssentos(id);
@@ -71,6 +74,7 @@ public class ClienteThread implements Runnable{
         
     }
     public void thread4(){
+        System.out.println("Thread4");
         Random rand = new Random();
         int r = rand.nextInt(assentos.numAssentos-1)+1;
         assentos.visualizarAssentos(id);
