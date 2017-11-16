@@ -30,6 +30,7 @@ public class Assentos {
         try
         {
             monitor.entraLeitor();
+            while(Thread.currentThread().isInterrupted()){};
             StringBuilder sb= new StringBuilder();
             sb.append("1,");
             sb.append(idThread);
@@ -40,7 +41,7 @@ public class Assentos {
             monitor.saiLeitor();
             return this.assentos;
         }
-        catch(Exception e){}
+        catch(InterruptedException e){}
         
         return new int[numAssentos];
    }

@@ -2,7 +2,6 @@
 package sysreservas;
 
 import java.io.PrintWriter;
-import java.nio.file.FileSystemException;
 
 /**
  * Classe salva log no buffer depois salva o buffer em arquivo de texto
@@ -19,9 +18,11 @@ public class Log {
      */
     Log(String logName){
         this.logNome=logName;
+        this.logBuffer = new StringBuffer();
         try{
             PrintWriter writer = new PrintWriter(logName+".txt", "UTF-8");
             this.writer=writer;
+//            this.writer.close();
         }catch(Exception e){
             System.out.println("erro ao criar arquivo");
         }
@@ -32,21 +33,24 @@ public class Log {
      * @param text 
      */
     public synchronized void escrevelog(String text){
+
         this.logBuffer.append(text);
-        //this.logBuffer.append(System.lineSeparator());
-        this.logBuffer.append("/n");
+
+        
     }
     /**
      * escreve buffer em arquivo
      * @return falso quando ocorre erro
      */
-    public synchronized void escreveArquivo() throws FileSystemException{
-        try{
-            if(this.logBuffer.length()>0){
-                writer.println(this.logBuffer);
+    public synchronized void escreveArquivo() {
+        
+            if(logBuffer.length()>0){
+                writer.println(logBuffer.toString());
+                logBuffer.setLength(0);
+                //writer.close();
                 //System.out.println(this.logBuffer);
             }
         }
-        catch(Exception e){System.out.println(e.getMessage());}        
+              
     }
-}
+

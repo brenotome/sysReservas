@@ -22,7 +22,7 @@ public class Thread0 implements Runnable {
         try{
             log.escreveArquivo();
         }catch (Exception e){
-            System.out.println(e.getMessage());
+            System.out.println("th zero erro");
         } 
       }
     }

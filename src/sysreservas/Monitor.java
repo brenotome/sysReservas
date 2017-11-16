@@ -13,24 +13,24 @@ public class Monitor
         this.req_escrita = 0;
     }
 
-    public void entraLeitor() throws InterruptedException
+    public synchronized void entraLeitor() throws InterruptedException
     {
         while(escritores > 0 || req_escrita >0) wait();
         leitores++;
     }
-    public void saiLeitor()
+    public synchronized void saiLeitor()
     {
         leitores--;
         notifyAll();
     }
-    public void entraEscritor() throws InterruptedException
+    public synchronized void entraEscritor() throws InterruptedException
     {
         req_escrita++;
         while(leitores > 0 || escritores > 0) wait();
         req_escrita--;
         escritores++;
     }
-    public void saiEscritor()
+    public synchronized void saiEscritor()
     {
         escritores--;
         notifyAll();
