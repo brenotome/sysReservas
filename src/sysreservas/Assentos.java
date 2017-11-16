@@ -49,10 +49,10 @@ public class Assentos {
         Random rand = new Random();
         int r = rand.nextInt(numAssentos);
         if(this.assentos[r]!=0){
-        System.out.println("Assento Ocupado");
-        return 0;
+            System.out.println("Assento Ocupado");
+            return 0;
         }else{
-         this.assentos[r]=idThread;
+            this.assentos[r]=idThread;
         }
        
         StringBuilder sb= new StringBuilder();
@@ -75,20 +75,16 @@ public class Assentos {
    }
     public synchronized int alocarAssentoDado(int idThread, int assento)
    {
-         int retorno;
+         int retorno=0;
          try
          {
             monitor.entraEscritor();
-            if(this.assentos[assento]!=0)
-                {
+            if(this.assentos[assento]!=0){
                 System.out.println("Assento Ocupado");
-                retorno = 0;
+            }else{
+                this.assentos[assento]=idThread;
+                retorno=1;
             }
-         else
-         {
-            retorno = 1;
-            this.assentos[assento] = idThread;
-         }
             StringBuilder sb= new StringBuilder();
             sb.append("vet=");
             sb.append(Arrays.toString(assentos)); // faz o output  ficar no formato [0,0,1,1]
@@ -99,13 +95,12 @@ public class Assentos {
             System.out.println(sb.toString());
             log.escrevelog(sb.toString());
             monitor.saiEscritor();
-            return retorno;
          }
          catch(InterruptedException e)
          {
             System.err.print(e);  
          }
-         return 0;
+         return retorno;
     }
    
    public synchronized int liberarAssento(int idThread, int assento)
@@ -127,18 +122,14 @@ public class Assentos {
             sb.append("vet=");
             sb.append(Arrays.toString(assentos)); // faz o output  ficar no formato [0,0,1,1]
             sb.append(";");
-            sb.append("fp.op3(");
+            sb.append("fp.op4(");
             sb.append(idThread);sb.append(",");sb.append(assento);
             sb.append(",vet);");
             System.out.println(sb.toString());
             log.escrevelog(sb.toString());
             monitor.saiEscritor();
          }
-         catch(InterruptedException e)
-         {
-            System.err.print(e);  
-         }
-         
+         catch(InterruptedException e){}
          
          return retorno;
    }
