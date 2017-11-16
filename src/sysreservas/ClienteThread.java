@@ -50,33 +50,33 @@ public class ClienteThread implements Runnable{
         assentos.liberarAssento(id, r);
     }
     public void thread2(){
-        int libera;
+        Random rand = new Random();
+        int r = rand.nextInt(assentos.numAssentos-1)+1;
         assentos.visualizarAssentos(id);
-        libera=assentos.alocarAssentoLivre(id);
+        assentos.alocarAssentoLivre(id);
         assentos.visualizarAssentos(id);
-        assentos.liberarAssento(id, libera);
+        assentos.liberarAssento(id, r);
     }
     public void thread3(){
         Random rand = new Random();
-        int libera;
         int r = rand.nextInt(assentos.numAssentos-1)+1;
         assentos.visualizarAssentos(id);
         assentos.alocarAssentoDado(id,r);
         assentos.visualizarAssentos(id);
         assentos.liberarAssento(id, r);
-        libera=assentos.alocarAssentoLivre(id);
+        assentos.alocarAssentoLivre(id);
         assentos.visualizarAssentos(id);
-        assentos.liberarAssento(id, libera);
+        r = rand.nextInt(assentos.numAssentos-1)+1;
+        assentos.liberarAssento(id, r);
         
     }
     public void thread4(){
         Random rand = new Random();
-        int libera;
         int r = rand.nextInt(assentos.numAssentos-1)+1;
         assentos.visualizarAssentos(id);
-        libera=assentos.alocarAssentoLivre(id);
+        assentos.alocarAssentoLivre(id);
         assentos.visualizarAssentos(id);
-        assentos.liberarAssento(id, libera);
+        assentos.liberarAssento(id, r);
     }
     
     

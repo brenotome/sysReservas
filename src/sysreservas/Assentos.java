@@ -79,10 +79,10 @@ public class Assentos {
          {
             monitor.entraEscritor();
             if(this.assentos[assento]!=0)
-         {
-           System.out.println("Assento Ocupado");
-           retorno = 0;
-         }
+                {
+                System.out.println("Assento Ocupado");
+                retorno = 0;
+            }
          else
          {
             retorno = 1;
@@ -105,7 +105,7 @@ public class Assentos {
    
    public synchronized int liberarAssento(int idThread, int assento)
    {
-      int retorno;
+      int retorno=0;
         try
          {
             monitor.entraEscritor();
@@ -115,20 +115,21 @@ public class Assentos {
             sb.append(Arrays.toString(assentos));
             log.escrevelog(sb.toString());
             monitor.saiEscritor();
+            if(assentos[assento] == 0 || assentos[assento] != idThread)
+            {
+                retorno = 0;
+            }
+            else
+            {
+                retorno = 1;
+                assentos[assento] = 0;
+            }
          }
          catch(InterruptedException e)
          {
             System.err.print(e);  
          }
-         if(assentos[assento] == 0 || assentos[assento] != idThread)
-         {
-             retorno = 0;
-         }
-         else
-         {
-             retorno = 1;
-             assentos[assento] = 0;
-         }
+         
          
          return retorno;
    }
