@@ -112,9 +112,7 @@ public class Assentos {
             StringBuilder sb= new StringBuilder();
             sb.append("4,");
             sb.append(idThread+',');
-            sb.append(Arrays.toString(assentos));
-            log.escrevelog(sb.toString());
-            monitor.saiEscritor();
+            
             if(assentos[assento] == 0 || assentos[assento] != idThread)
             {
                 retorno = 0;
@@ -124,6 +122,9 @@ public class Assentos {
                 retorno = 1;
                 assentos[assento] = 0;
             }
+            sb.append(Arrays.toString(assentos));
+            log.escrevelog(sb.toString());
+            monitor.saiEscritor();
          }
          catch(InterruptedException e)
          {
