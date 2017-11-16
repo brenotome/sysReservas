@@ -95,6 +95,33 @@ public class Assentos {
          return retorno;
     }
    }
-   public void liberarAssento(int idThread, int assento){}
+   public int liberarAssento(int idThread, int assento)
+   {
+      int retorno;
+        try
+         {
+            monitor.entraEscritor();
+         }
+         catch(InterruptedException e)
+         {
+            System.err.print(e);  
+         }
+         if(assentos[assento] == 0 || assentos[assento] != idThread)
+         {
+             retorno = 0;
+         }
+         else
+         {
+             retorno = 1;
+             assentos[assento] = 0;
+         }
+         StringBuilder sb= new StringBuilder();
+         sb.append("4,");
+         sb.append(idThread+',');
+         sb.append(Arrays.toString(assentos));
+         log.escrevelog(sb.toString());
+         monitor.saiEscritor();
+         return retorno;
+   }
     
 }
