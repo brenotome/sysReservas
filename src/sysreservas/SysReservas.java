@@ -20,7 +20,6 @@ public class SysReservas {
         Assentos assentos = new Assentos(10,log,monitor);
 
     }
-    public void thread0(){}
     public void thread1(){}
     public void thread2(){}
     public void thread3(){}

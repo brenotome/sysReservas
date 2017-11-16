@@ -5,22 +5,41 @@
  */
 package sysreservas;
 
+import java.util.Random;
+
 /**
  *
  * @author breno
  */
 public class ClienteThread implements Runnable{
-
+    private SysReservas reservas;
+    public ClienteThread(SysReservas reservas) {
+        this.reservas = reservas;
+    }
+    
     @Override
     public void run() {
      while(!Thread.currentThread().isInterrupted()){
         try{
-            //thread code
+            Random rand = new Random();
+            int r = rand.nextInt(3)+1;
+            switch(r){
+                case 1:
+                    reservas.thread1();
+                case 2:
+                    reservas.thread2();
+                case 3:
+                    reservas.thread3();
+                case 4:
+                    reservas.thread4();
+            }
         }catch (Exception e){
-            //exception 
+            System.out.println(e.getMessage());
         } 
       }
     }
+    
+    
     
     
 }

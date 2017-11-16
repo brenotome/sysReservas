@@ -30,7 +30,7 @@ public class Log {
      * escreve o parametro para o Buffer, a classe logBuffer é threadSafe 
      * @param text 
      */
-    public void escrevelog(String text){
+    public synchronized void escrevelog(String text){
         this.logBuffer.append(text);
                 this.logBuffer.append(System.lineSeparator());
     }
@@ -38,12 +38,11 @@ public class Log {
      * escreve buffer em arquivo
      * @return falso quando ocorre erro
      */
-    public boolean escreveArquivo(){
+    public synchronized void escreveArquivo() throws Exception{
         try{
                 writer.println(this.logBuffer);
                 writer.close();
         }
-        catch(Exception e){System.out.println("erro de escrita no arquivo");return false;}
-        return true;
+        catch(Exception e){System.out.println("erro de escrita no arquivo");}        
     }
 }

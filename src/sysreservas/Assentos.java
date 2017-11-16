@@ -25,7 +25,7 @@ public class Assentos {
         this.monitor=monitor;
     }
    
-   public int[] visualizarAssentos(int idThread){
+   public synchronized int[] visualizarAssentos(int idThread){
         try
         {
             monitor.entraLeitor();
@@ -40,7 +40,7 @@ public class Assentos {
         monitor.saiLeitor();
        return this.assentos;
    }
-   public int alocarAssentoLivre(int idThread){
+   public synchronized int alocarAssentoLivre(int idThread){
        Random rand = new Random();
        int r = rand.nextInt(numAssentos);
        if(this.assentos[r]==0){
@@ -56,7 +56,7 @@ public class Assentos {
        log.escrevelog(sb.toString());
        return 1;
    }
-   public void alocarAssentoDado(int idThread, int assento){}
-   public void liberarAssento(int idThread, int assento){}
+   public synchronized void alocarAssentoDado(int idThread, int assento){}
+   public synchronized void liberarAssento(int idThread, int assento){}
     
 }
