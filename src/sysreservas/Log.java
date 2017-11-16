@@ -1,6 +1,7 @@
 
 package sysreservas;
 
+import java.io.FileWriter;
 import java.io.PrintWriter;
 
 /**
@@ -16,13 +17,14 @@ public class Log {
      * Cria arquivo
      * @param logName 
      */
-    Log(String logName){
-        this.logNome=logName;
+    Log(String logNome){
+        this.logNome=logNome;
         this.logBuffer = new StringBuffer();
         try{
-            PrintWriter writer = new PrintWriter(logName+".txt", "UTF-8");
+            PrintWriter writer = new PrintWriter(logNome+".py", "UTF-8");
             this.writer=writer;
-//            this.writer.close();
+            this.writer.println("import funcoes as fp");
+            this.writer.close();
         }catch(Exception e){
             System.out.println("erro ao criar arquivo");
         }
@@ -40,16 +42,17 @@ public class Log {
     }
     /**
      * escreve buffer em arquivo
-     * @return falso quando ocorre erro
      */
     public synchronized void escreveArquivo() {
-        
+            try{
             if(logBuffer.length()>0){
+                PrintWriter writer = new PrintWriter(new FileWriter(logNome+".py", true));
                 writer.println(logBuffer.toString());
+                //writer.append(logNome);
                 logBuffer.setLength(0);
-                //writer.close();
-                //System.out.println(this.logBuffer);
+                writer.close();
             }
+            }catch(Exception e){}
         }
               
     }

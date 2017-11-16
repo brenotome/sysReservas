@@ -27,10 +27,13 @@ public class Assentos {
         {
             monitor.entraLeitor();
             StringBuilder sb= new StringBuilder();
-            sb.append("1,");
-            sb.append(idThread);
-            sb.append(",");
+            
+            sb.append("vet=");
             sb.append(Arrays.toString(assentos)); // faz o output  ficar no formato [0,0,1,1]
+            sb.append(";");
+            sb.append("fp.op1(");
+            sb.append(idThread);
+            sb.append(",vet);");
             System.out.println(sb.toString());
             log.escrevelog(sb.toString());
             monitor.saiLeitor();
@@ -53,9 +56,12 @@ public class Assentos {
         }
        
         StringBuilder sb= new StringBuilder();
-        sb.append("2,");
-        sb.append(idThread+",");
-        sb.append(Arrays.toString(assentos));
+        sb.append("vet=");
+        sb.append(Arrays.toString(assentos)); // faz o output  ficar no formato [0,0,1,1]
+        sb.append(";");
+        sb.append("fp.op2(");
+        sb.append(idThread);sb.append(",");sb.append(r);
+        sb.append(",vet);");
         System.out.println(sb.toString());
         log.escrevelog(sb.toString());
         monitor.saiEscritor();
@@ -84,9 +90,12 @@ public class Assentos {
             this.assentos[assento] = idThread;
          }
             StringBuilder sb= new StringBuilder();
-            sb.append("3,");
-            sb.append(idThread+",");
-            sb.append(Arrays.toString(assentos));
+            sb.append("vet=");
+            sb.append(Arrays.toString(assentos)); // faz o output  ficar no formato [0,0,1,1]
+            sb.append(";");
+            sb.append("fp.op3(");
+            sb.append(idThread);sb.append(",");sb.append(assento);
+            sb.append(",vet);");
             System.out.println(sb.toString());
             log.escrevelog(sb.toString());
             monitor.saiEscritor();
@@ -105,10 +114,6 @@ public class Assentos {
         try
          {
             monitor.entraEscritor();
-            StringBuilder sb= new StringBuilder();
-            sb.append("4,");
-            sb.append(idThread+",");
-            
             if(assentos[assento] == 0 || assentos[assento] != idThread)
             {
                 retorno = 0;
@@ -118,7 +123,13 @@ public class Assentos {
                 retorno = 1;
                 assentos[assento] = 0;
             }
-            sb.append(Arrays.toString(assentos));
+            StringBuilder sb= new StringBuilder();
+            sb.append("vet=");
+            sb.append(Arrays.toString(assentos)); // faz o output  ficar no formato [0,0,1,1]
+            sb.append(";");
+            sb.append("fp.op3(");
+            sb.append(idThread);sb.append(",");sb.append(assento);
+            sb.append(",vet);");
             System.out.println(sb.toString());
             log.escrevelog(sb.toString());
             monitor.saiEscritor();
