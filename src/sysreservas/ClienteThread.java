@@ -42,25 +42,41 @@ public class ClienteThread implements Runnable{
     }
     
     public void thread1(){
-        System.out.println("th1");
         assentos.visualizarAssentos(id);
-        System.out.println("th1 OUT");
-
+        Random rand = new Random();
+        int r = rand.nextInt(assentos.numAssentos-1)+1;
+        assentos.alocarAssentoDado(id,r);
+        assentos.visualizarAssentos(id);
+        assentos.liberarAssento(id, r);
     }
     public void thread2(){
-        System.out.println("th2");
+        int libera;
         assentos.visualizarAssentos(id);
-        System.out.println("th2 OUT");
+        libera=assentos.alocarAssentoLivre(id);
+        assentos.visualizarAssentos(id);
+        assentos.liberarAssento(id, libera);
     }
     public void thread3(){
-        System.out.println("th3");
+        Random rand = new Random();
+        int libera;
+        int r = rand.nextInt(assentos.numAssentos-1)+1;
         assentos.visualizarAssentos(id);
-        System.out.println("th3 OUT");
+        assentos.alocarAssentoDado(id,r);
+        assentos.visualizarAssentos(id);
+        assentos.liberarAssento(id, r);
+        libera=assentos.alocarAssentoLivre(id);
+        assentos.visualizarAssentos(id);
+        assentos.liberarAssento(id, libera);
+        
     }
     public void thread4(){
-        System.out.println("th4");
+        Random rand = new Random();
+        int libera;
+        int r = rand.nextInt(assentos.numAssentos-1)+1;
         assentos.visualizarAssentos(id);
-        System.out.println("th4 OUT");
+        libera=assentos.alocarAssentoLivre(id);
+        assentos.visualizarAssentos(id);
+        assentos.liberarAssento(id, libera);
     }
     
     
