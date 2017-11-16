@@ -52,7 +52,7 @@ public class Assentos {
        StringBuilder sb= new StringBuilder();
        sb.append("2,");
        sb.append(idThread+',');
-       sb.append(assentos);
+       sb.append(Arrays.toString(assentos));
        log.escrevelog(sb.toString());
        return 1;
    }
