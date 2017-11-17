@@ -6,7 +6,7 @@ import java.io.PrintWriter;
 
 /**
  * Classe salva log no buffer depois salva o buffer em arquivo de texto
- * @author breno
+ * @author Breno Tomé e Ricardo Bayer
  */
 public class Log {
     public StringBuffer logBuffer;
@@ -37,18 +37,16 @@ public class Log {
     public synchronized void escrevelog(String text){
 
         this.logBuffer.append(text);
-
         
     }
     /**
-     * escreve buffer em arquivo
+     * escreve buffer em arquivo python que verifica a corretude do programa
      */
     public synchronized void escreveArquivo() {
             try{
             if(logBuffer.length()>0){
                 PrintWriter writer = new PrintWriter(new FileWriter(logNome+".py", true));
                 writer.println(logBuffer.toString());
-                //writer.append(logNome);
                 logBuffer.setLength(0);
                 writer.close();
             }

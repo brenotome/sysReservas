@@ -6,8 +6,9 @@
 package sysreservas;
 
 /**
- *
- * @author breno
+ * Thread responsavel por chamar a função log.escreve arquivo, que por sua vez
+ * escreve o conteudo do buffer para um arquivo de texto
+ * @author Breno Tomé e Ricardo Bayer
  */
 public class Thread0 implements Runnable {
     private Log log;

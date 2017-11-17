@@ -1,13 +1,18 @@
 package sysreservas;
 import java.util.concurrent.*;
-
-import java.util.concurrent.*;
+/**
+ * 
+ * @author Breno Tomé e Ricardo Bayer
+ */
 
 
 public class SysReservas {
+    
     private Assentos assentos;
     /**
-     * @param args the command line arguments
+     * Classe principal, cria instancias do monitor, log e assentos 
+     * depois cria e inicia 4 threads clientes e uma thread de log (Thread0)
+     * @param args 
      */
     public static void main(String[] args) {
         Monitor monitor = new Monitor();

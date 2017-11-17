@@ -1,19 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package sysreservas;
 
 
 import java.util.Random;
 
-
+/**
+ * executa funções da classe assentos de forma concorrente
+ * @author Breno Tomé e Ricardo Bayer
+ */
 public class ClienteThread implements Runnable{
     private Log log;
     private Monitor monitor;
     private Assentos assentos;
     private int id;
+    /**
+     * Construtor, salva todos os parametros como atributos da classe
+     * @param log
+     * @param monitor
+     * @param assentos
+     * @param id 
+     */
     public ClienteThread(Log log, Monitor monitor,Assentos assentos,int id) {
         this.log = log;
         this.monitor = monitor;

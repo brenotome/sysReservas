@@ -1,5 +1,9 @@
 package sysreservas;
 
+/**
+ * Monitor que controla a concorrencia das threads
+ * @author Breno Tomé e Ricardo Bayer
+ */
 public class Monitor
 {
     private int leitores;

@@ -1,27 +1,43 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sysreservas;
 
 
 import java.util.Arrays;
 import java.util.Random;
 
+/**
+ * Classe salva o array de assentos, e contem todas as chamadas a funções que os consultam/alteram
+ * é chamadas pelas threads de forma concorrente e chama o monitor para sincronizar a execução
+ * @author Breno Tomé e Ricardo Bayer
+ */
 public class Assentos {
-   public int[] assentos;
-   public int numAssentos;
+
+    /**
+     *
+     */
+    public int[] assentos;
+
+    /**
+     *
+     */
+    public int numAssentos;
    private Log log;
    private Monitor monitor;
-
+/**
+ * 
+ * @param numAssentos
+ * @param log
+ * @param monitor 
+ */
     Assentos(int numAssentos, Log log, Monitor monitor) {
         this.assentos=new int[numAssentos];
         this.log = log;
         this.numAssentos = numAssentos;
         this.monitor=monitor;
     }
-   
+   /**
+    * 
+    * @param idThread 
+    */
    public synchronized void visualizarAssentos(int idThread){
         try
         {
@@ -42,6 +58,11 @@ public class Assentos {
         
 
    }
+   /**
+    * 
+    * @param idThread
+    * @return 
+    */
    public synchronized int alocarAssentoLivre(int idThread){
       try
       {
@@ -73,6 +94,12 @@ public class Assentos {
       }
       return 0;
    }
+   /**
+    * 
+    * @param idThread
+    * @param assento
+    * @return 
+    */
     public synchronized int alocarAssentoDado(int idThread, int assento)
    {
          int retorno=0;
@@ -102,7 +129,12 @@ public class Assentos {
          }
          return retorno;
     }
-   
+   /**
+    * 
+    * @param idThread
+    * @param assento
+    * @return 
+    */
    public synchronized int liberarAssento(int idThread, int assento)
    {
       int retorno=0;
